@@ -160,17 +160,19 @@ const Comments = ({ comments, handleInsertNode, handleEditNode, handleDeleteNode
           </div>
         )}
 
-        {comments?.items?.map((comment: any) => {
-          return (
-            <Comments
-              comments={comment}
-              key={comment.id}
-              handleInsertNode={handleInsertNode}
-              handleEditNode={handleEditNode}
-              handleDeleteNode={handleDeleteNode}
-            />
-          );
-        })}
+        <div className="border-l border-l-gray-500 pl-1 rounded-tl-xl rounded-bl-xl">
+          {comments?.items?.map((comment: any) => {
+            return (
+              <Comments
+                comments={comment}
+                key={comment.id}
+                handleInsertNode={handleInsertNode}
+                handleEditNode={handleEditNode}
+                handleDeleteNode={handleDeleteNode}
+              />
+            );
+          })}
+        </div>
       </div>
 
       {contextHolder}
