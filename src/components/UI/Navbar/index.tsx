@@ -51,7 +51,7 @@ const Navbar = () => {
       <div className="justify-self-end ml-auto flex items-center justify-center GAP-5">
         <Filter color="black" size={32} className="mr-3 cursor-pointer" onClick={() => router.push("/filter")} />
         <Input
-          placeholder="Search Product"
+          placeholder="Search by Product Title"
           className="w-[390px]"
           onChange={(e) => {
             e.preventDefault();

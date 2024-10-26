@@ -1,15 +1,65 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import Comments from "./components/Comments";
+import useNode from "@/hooks/useNode";
+import { Divider } from "antd";
+
+// {
+//   id: 87346987,
+//   name: "hello",
+//   items: [
+//     {
+//       id: 4985798,
+//       name: "hello world",
+//       items: [{ id: 84298, name: "hello word 123", items: [{ id: 34534, name: "demo 343", items: [] }] }],
+//     },
+//     { id: 34534545, name: "helojkasdhflk  asdf ", items: [] },
+//     {
+//       id: 34532344545,
+//       name: "helojkasdhfasdfasdf hadflk  asdf Ut est Lorem ad ea et dolore occaecat aliqua incididunt nostrud. Reprehenderit consectetur ex occaecat culpa est ea ullamco consequat do anim culpa quis cillum. Exercitation adipisicing cillum voluptate officia cupidatat sunt officia excepteur. Excepteur quis duis voluptate Lorem ea. Ex aliquip velit culpa nulla in consequat cupidatat et. Aliqua eu sunt elit eiusmod occaecat. Eiusmod ad dolore nulla labore sint dolore. Sit est magna labore duis dolore velit tempor aliqua laboris reprehenderit aliquip. Dolore esse culpa cillum dolor nostrud minim cupidatat laboris anim excepteur. Quis culpa occaecat minim proident ex non occaecat amet ullamco magna exercitation. Enim in aute irure anim exercitation dolor labore velit mollit. Ex culpa esse adipisicing officia et. Sint enim commodo voluptate in.",
+//       items: [],
+//     },
+//   ],
+// },
+// { id: 349857345, name: "react js", items: [{ id: 985798456, name: "javascript", items: [] }] },
+const comments = {
+  id: 1,
+  items: [],
+};
 
 const SingleProduct = () => {
+  const [commentData, setCommentData] = useState<any>(comments);
+  const { insertNode, editNode, deleteNode } = useNode();
+
+  // @ts-ignore
+  const handleCreateNode = (folderId: number, items: any) => {
+    const finalStructure = insertNode(commentData, folderId, items);
+    setCommentData(finalStructure);
+  };
+
+  const handleEditNode = (folderId: number, value: string) => {
+    const finalStructure = editNode(commentData, folderId, value);
+    setCommentData(finalStructure);
+  };
+
+  const handleDeleteNode = (folderId: number) => {
+    const finalStructure = deleteNode(commentData, folderId);
+    console.log(finalStructure);
+    // @ts-ignore
+    const temp = { ...finalStructure };
+    setCommentData(temp);
+  };
+
   return (
-    <div className="bg-white py-6 sm:py-8 lg:py-12 rounded-md">
+    <div className="bg-white py-6 sm:py-8 lg:py-12 rounded-xl text-black">
       <div className="mx-auto max-w-screen-xl px-4 md:px-8">
         <div className="grid gap-8 md:grid-cols-2">
           <div className="grid gap-4 lg:grid-cols-5">
             <div className="order-last flex gap-4 lg:order-none lg:flex-col">
               <div className="overflow-hidden rounded-lg bg-gray-100">
                 <img
-                  src="https://images.unsplash.com/flagged/photo-1571366992791-2ad2078656cb?auto=format&q=75&fit=crop&w=250"
+                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1999&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   loading="lazy"
                   alt="Photo by Himanshu Dewangan"
                   className="h-full w-full object-cover object-center"
@@ -18,7 +68,7 @@ const SingleProduct = () => {
 
               <div className="overflow-hidden rounded-lg bg-gray-100">
                 <img
-                  src="https://images.unsplash.com/flagged/photo-1571366992968-15b65708ee76?auto=format&q=75&fit=crop&w=250"
+                  src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   loading="lazy"
                   alt="Photo by Himanshu Dewangan"
                   className="h-full w-full object-cover object-center"
@@ -27,7 +77,7 @@ const SingleProduct = () => {
 
               <div className="overflow-hidden rounded-lg bg-gray-100">
                 <img
-                  src="https://images.unsplash.com/flagged/photo-1571366992999-47669b775ef6?auto=format&q=75&fit=crop&w=250"
+                  src="https://images.unsplash.com/photo-1615396899839-c99c121888b0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   loading="lazy"
                   alt="Photo by Himanshu Dewangan"
                   className="h-full w-full object-cover object-center"
@@ -37,7 +87,7 @@ const SingleProduct = () => {
 
             <div className="relative overflow-hidden rounded-lg bg-gray-100 lg:col-span-4">
               <img
-                src="https://images.unsplash.com/flagged/photo-1571366992942-be878c7b10c0?auto=format&q=75&fit=crop&w=600"
+                src="https://images.unsplash.com/photo-1560393464-5c69a73c5770?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 loading="lazy"
                 alt="Photo by Himanshu Dewangan"
                 className="h-full w-full object-cover object-center"
@@ -183,6 +233,26 @@ const SingleProduct = () => {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Comment section */}
+        <Divider />
+
+        <div className="mb-4 p-4 rounded-lg bg-gray-100 text-gray-700">
+          <p className="text-lg font-semibold">Join the Conversation</p>
+          <p className="mt-2 text-sm">
+            We value your insights! Share your thoughts, ask questions, or start a discussion in the comments below.
+            Please keep it respectful and constructive, as we aim to build a positive community experience for everyone.
+          </p>
+        </div>
+
+        <div className="mt-10 grid grid-cols-2">
+          <Comments
+            comments={commentData}
+            handleInsertNode={handleCreateNode}
+            handleEditNode={handleEditNode}
+            handleDeleteNode={handleDeleteNode}
+          />
         </div>
       </div>
     </div>
