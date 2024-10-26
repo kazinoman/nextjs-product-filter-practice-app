@@ -1,41 +1,7 @@
-function Practicepage() {
-  interface PracticePageProps {
-    onPageChange?: (page: number) => void;
-  }
-  const Practicepage = ({ onPageChange }: PracticePageProps) => {
-    const handlePagination = (page: number) => {
-      console.log("pagination", page);
-      onPageChange?.(page);
-    };
+import React from "react";
 
-    return (
-      <div>
-        <h1>Practice Page</h1>
-        <div>
-          <button
-            onClick={() => {
-              handlePagination(1);
-            }}
-          >
-            1
-          </button>
-          <button
-            onClick={() => {
-              handlePagination(2);
-            }}
-          >
-            2
-          </button>
-          <button
-            onClick={() => {
-              handlePagination(3);
-            }}
-          >
-            {" "}
-          </button>
-        </div>
-      </div>
-    );
-  };
-  return <Practicepage />;
-}
+const PracticePage = () => {
+  return <div>PracticePage</div>;
+};
+
+export default PracticePage;
