@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={`${inter.className} container mx-auto border-[1px] border-zinc-700 shadow-lg my-5 p-2 rounded-2xl text-white bg-zinc-950 h-full overflow-x-auto`}
       >
         <AntdRegistry>
-          <div className="bg-transparent p-2 rounded-xl ">
+          <div className="bg-white p-2 rounded-xl ">
             <Navbar />
             <div className="py-5">{children}</div>
             <Footer />
